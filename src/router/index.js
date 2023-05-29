@@ -1,24 +1,25 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import StudentActivities from "@/views/Activities.vue";
+import Zoom from "@/views/Zoom.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/activities',
     name: 'student-activities',
     component: StudentActivities,
-    
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/zoom/:id',
+    name: 'zoom-view',
+    component: Zoom,
   },
+  {
+    path: '/',
+    redirect: '/activities'
+  }
 ];
 
 const router = new VueRouter({

@@ -43,6 +43,12 @@ const store = new Vuex.Store({
       });
     },
   },
+  getters: {
+    // ...
+    getActivityById: (state) => (id) => {
+      return state.activities.find(activity => activity.id === id)
+    }
+  },
   actions: {
     fetchActivities({commit}) {
       const apiURL = "http://localhost:3000/activities/v1";

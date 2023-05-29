@@ -4,7 +4,7 @@
     <template v-for="(group, month) in groupedActivitiesByMonth">
       <div :key="month" class="month-title">{{ month }}</div>
       <template v-for="activity in group">
-        <StudentActivityListItem :activity="activity" :key="activity.id"/>
+        <StudentActivityListItem v-on="$listeners" :activity="activity" :key="activity.id" />
       </template>
     </template>
   </div>

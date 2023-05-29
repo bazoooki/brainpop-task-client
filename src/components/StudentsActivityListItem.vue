@@ -1,35 +1,41 @@
 <template>
   <div class="activity-list-item">
     <div class="activity-info">
-      <StudentsActivityListItemTopicIconJunior
-        v-if="activity.product === 'bpjr'"
-        :topicData="activity.topic_data"
+
+      <ActivityTopicIcon
+        :topic-data="activity.topic_data"
+        :size="30"
+        :junior="activity.product === 'bpjr'"
       />
-      <StudentsActivityListItemTopicIcon
-        v-if="activity.product === 'bp'"
-        :topicData="activity.topic_data"
-      />
+
       <div class="activity-topic">
+
         <div class="topic-title">{{ activity.topic_title }}</div>
         <div>date</div>
       </div>
+
     </div>
+
     <div class="activity-settings">
       <div v-if="activity.is_scored" class="activity-score">Score 0 / 0</div>
 
-      <button v-if="activity.is_zoom_view">View</button>
+      <button v-if="activity.is_zoom_view" @click="openZoom">View</button>
     </div>
   </div>
 </template>
 
 <script>
-import StudentsActivityListItemTopicIcon from "@/components/StudentsActivityListItemTopicIcon.vue";
-import StudentsActivityListItemTopicIconJunior
-  from "@/components/StudentsActivityListItemTopicIconJunior.vue";
+
+import ActivityTopicIcon from "@/components/ActivityTopicIcon.vue";
 
 export default {
   name: 'StudentsActivityListItem',
-  components: {StudentsActivityListItemTopicIconJunior, StudentsActivityListItemTopicIcon},
+  components: {ActivityTopicIcon},
+  methods: {
+    openZoom () {
+      this.$emit('update:selectedActivityId', this.activity.id)
+    }
+  },
   props: {
     activity: Object,
   },
