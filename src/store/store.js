@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import { humanize} from "@/utils/utils";
 
 Vue.use(Vuex)
 
@@ -21,9 +22,10 @@ const store = new Vuex.Store({
           d_created: activity.d_created,
           topic_data: activity.topic_data,
           comment: activity.comment,
+          topic_title: `${humanize(activity.topic_data.name)} ${humanize(activity.resource_type)}`,
         };
       });
-    }
+    },
   },
   actions: {
     fetchActivities({commit}) {
