@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import StudentActivities from "@/views/StudentActivities.vue";
+import StudentActivities from "@/views/Activities.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'student-activities',
     component: StudentActivities,
+    
   },
   {
     path: '/about',

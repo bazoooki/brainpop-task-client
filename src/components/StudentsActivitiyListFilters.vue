@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <Autocomplete :suggestions="suggestions"/>
+    <SearchAutocomplete :suggestions="suggestions"/>
   </div>
 
 </template>
@@ -9,11 +9,11 @@
 <script>
 
 
-import Autocomplete from "@/components/AutoComplete.vue";
+import SearchAutocomplete from "@/components/SearchAutoComplete.vue";
 
 export default {
-  name: 'StudentActivitiesListFilters',
-  components: {Autocomplete},
+  name: 'StudentsActivityListFilters',
+  components: {SearchAutocomplete},
   computed: {
     suggestions() {
       return this.activities.map(item=>item.topic_title)

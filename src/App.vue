@@ -11,10 +11,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  max-width: 1280px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+}
+.text-xs	{
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
 }
 
 </style>

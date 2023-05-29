@@ -1,13 +1,17 @@
 <template>
   <div class="autocomplete">
-    <input
-      type="text"
-      @input="onChange"
-      v-model="search"
-      @keydown.down="onArrowDown"
-      @keydown.up="onArrowUp"
-      @keydown.enter="onEnter"
-    />
+    <div class="search-input">
+      <input
+        type="text"
+        @input="onChange"
+        placeholder="Search Activities"
+        v-model="search"
+        @keydown.down="onArrowDown"
+        @keydown.up="onArrowUp"
+        @keydown.enter="onEnter"
+      />
+      <button></button>
+    </div>
     <ul
       id="autocomplete-results"
       v-show="isOpen"
@@ -24,7 +28,7 @@
         v-for="(result, i) in results"
         :key="i"
         @click="setResult(result)"
-        class="autocomplete-result"
+        class="autocomplete-result text-xs"
         :class="{ 'is-active': i === arrowCounter }"
       >
         {{ result }}
@@ -35,7 +39,7 @@
 
 <script>
 export default {
-  name: 'Autocomplete',
+  name: 'SearchAutocomplete',
   props: {
     suggestions: {
       type: Array,
@@ -74,7 +78,6 @@ export default {
     filterResults() {
       this.results = this.suggestions.filter((item) => {
         const a = item.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
-        console.log({a})
         return a
       });
     },
@@ -109,17 +112,48 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .autocomplete {
   position: relative;
+
+  display: inline-block;
+  width: 350px;
+}
+.autocomplete .search-input {
+  display: flex;
+  justify-items: center;
+}
+.autocomplete input {
+  width: 300px;
+  text-indent: 5px;
+  border: 1px solid #ccc;;
+  border-right: 0px;
+  border-radius: 3px 0px 0px 3px;
+  text: 16px;
+}
+.autocomplete button  {
+  width: 30px;
+  border: none;
+  background: #0f766e;
+  border:1px solid #047857;
+  border-left: 0px;
+  border-radius: 0px 3px 3px 0;
+  height: 30px;
+  position: relative;
+  display: inline-block;
 }
 
 .autocomplete-results {
-  padding: 0;
+  border: 2px solid #eeeeee;
+  padding: 2px;
   margin: 0;
-  border: 1px solid #eeeeee;
   height: 120px;
   overflow: auto;
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+
 }
 
 .autocomplete-result {

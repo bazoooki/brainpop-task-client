@@ -2,9 +2,9 @@
 
   <div>
     <template v-for="(group, month) in groupedActivitiesByMonth">
-      <h3 :key="month" class="month">{{ month }}</h3>
+      <div :key="month" class="month-title">{{ month }}</div>
       <template v-for="activity in group">
-        <StudentActivitiesListItem :activity="activity" :key="activity.id"/>
+        <StudentActivityListItem :activity="activity" :key="activity.id"/>
       </template>
     </template>
   </div>
@@ -14,11 +14,11 @@
 <script>
 
 import {groupByKey} from '../utils/utils'
-import StudentActivitiesListItem from "@/components/StudentActivitiesListItem.vue";
+import StudentActivityListItem from "@/components/StudentsActivityListItem.vue";
 
 export default {
-  name: 'StudentActivitiesList',
-  components: {StudentActivitiesListItem},
+  name: 'StudentsActivityList',
+  components: {StudentActivityListItem},
   computed: {
     groupedActivitiesByMonth() {
       const list = this.activities.map(activity => {
@@ -42,11 +42,10 @@ export default {
 };
 </script>
 <style>
-h3.month {
+.month-title {
   background-color: cornsilk;
-  padding:3px;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
+  margin-top: 1rem;
+  padding: 0px 12px;
   border-radius: 12px;
   display: inline-block;
   font-size: 14px;
