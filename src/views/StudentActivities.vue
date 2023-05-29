@@ -1,6 +1,6 @@
 <template>
   <div class="student-activities">
-    Student Activites
+    activities: {{activities}}
   </div>
 </template>
 
@@ -8,5 +8,13 @@
 
 export default {
   name: 'StudentActivities',
+  computed: {
+    activities() {
+      return this.$store.state.activities;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("fetchActivities");
+  }
 }
 </script>
