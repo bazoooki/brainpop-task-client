@@ -38,13 +38,13 @@ const store = new Vuex.Store({
           comment: activity.comment,
           topic_title: `${humanize(activity.topic_data.name)} ${humanize(activity.resource_type)}`,
           is_zoom_view: ZOOM_MODE_RESOURCES_TYPES.includes(activity.resource_type),
-          is_scored: (WITH_SCORE_RESOURCES_TYPES.includes(activity.resource_type) && !!activity.score.length && !!activity.possible_score.length)
+          is_scored: (WITH_SCORE_RESOURCES_TYPES.includes(activity.resource_type) && !!activity.score.length && !!activity.possible_score.length),
+          createdAt: new Date(activity.d_created * 1000),
         };
       });
     },
   },
   getters: {
-    // ...
     getActivityById: (state) => (id) => {
       return state.activities.find(activity => activity.id === id)
     }

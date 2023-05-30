@@ -9,16 +9,11 @@
         :activities="filteredActivities"
       />
     </div>
-
-    <Modal v-if="selectedActivityData"  @close="selectedActivityId = null">
+    <Modal v-if="selectedActivityData" @close="selectedActivityId = null">
       <ZoomActivityInfo
         :activity="selectedActivityData"
       />
     </Modal>
-
-<!--    <div class="zoom-modal" v-if="selectedActivityData">-->
-<!--      -->
-<!--    </div>-->
   </div>
 </template>
 
@@ -48,7 +43,6 @@ export default {
     filteredActivities() {
       return this.$store.state.activities
     },
-
   },
   mounted() {
     this.$store.dispatch("fetchActivities");
@@ -62,6 +56,5 @@ export default {
   height: calc(100vh - 3rem);
   z-index: 2;
 }
-
 </style>
 

@@ -1,25 +1,27 @@
 <template>
   <div class="activity-list-item">
     <div class="activity-info">
-
       <ActivityTopicIcon
         :topic-data="activity.topic_data"
         :size="30"
         :junior="activity.product === 'bpjr'"
       />
-
       <div class="activity-topic">
-
-        <div class="topic-title">{{ activity.topic_title }}</div>
-        <div>date</div>
+        <div class="topic-title">
+          {{ activity.topic_title }}
+        </div>
+        <DateTime
+          :date="activity.createdAt"
+          small
+        />
       </div>
-
     </div>
-
     <div class="activity-settings">
-      <div v-if="activity.is_scored" class="activity-score">Score 0 / 0</div>
-
-      <button v-if="activity.is_zoom_view" @click="openZoom">View</button>
+      <div v-if="activity.is_scored" class="activity-score">
+        Score {{ activity.score }} / {{ activity.possible_score }}
+      </div>
+      <button class="view-work-btn" v-if="activity.is_zoom_view" @click="openZoom">👁 View work
+      </button>
     </div>
   </div>
 </template>
@@ -27,12 +29,13 @@
 <script>
 
 import ActivityTopicIcon from "@/components/ActivityTopicIcon.vue";
+import DateTime from "@/components/DateTime.vue";
 
 export default {
   name: 'StudentsActivityListItem',
-  components: {ActivityTopicIcon},
+  components: {DateTime, ActivityTopicIcon},
   methods: {
-    openZoom () {
+    openZoom() {
       this.$emit('update:selectedActivityId', this.activity.id)
     }
   },
@@ -46,10 +49,9 @@ export default {
 <style scoped>
 
 .activity-list-item {
-  padding: 1.2rem;
-  padding-bottom: 1.5rem !important;
+  padding: 1.1rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-top: 1rem;
   display: flex;
   justify-items: center;
@@ -59,7 +61,6 @@ export default {
 .activity-info {
   flex-wrap: wrap;
   display: flex;
-
   height: 100%;
   align-items: center;
 }
@@ -74,6 +75,9 @@ export default {
 
 .topic-title {
   text-transform: capitalize;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000
 }
 
 .activity-settings {
@@ -84,5 +88,16 @@ export default {
 
 .activity-score {
   padding: 0 6px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.view-work-btn {
+  cursor: pointer;
+  background: none;
+  color: #0f766e;
+  border: none;
+  font-weight: bolder;
 }
 </style>

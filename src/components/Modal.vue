@@ -7,22 +7,11 @@
       <slot></slot>
     </div>
   </div>
-  <!--  <div class="modal">-->
-  <!--    <button class="close-btn" @click="$emit('close')">-->
-  <!--      X-->
-  <!--    </button>-->
-  <!--    <slot></slot>-->
-  <!--  </div>-->
 </template>
 
 <script>
 export default {
   name: 'Modal',
-  methods: {
-    closeModal() {
-      console.log('cloose modal')
-    }
-  }
 }
 </script>
 
@@ -33,10 +22,8 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-
   height: 100%;
 }
-
 
 .modal-container {
   position: fixed;
@@ -51,7 +38,6 @@ export default {
   border: 4px solid #aaa;
   transform: translate(-50%, -50%);
 }
-
 
 .close-btn {
   width: 35px;
