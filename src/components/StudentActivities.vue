@@ -1,6 +1,5 @@
 <template>
   <div class="activities">
-
     <h1>Timeline</h1>
     <div class="activity-list">
       <StudentActivityListFilters
@@ -11,9 +10,13 @@
       <StudentsActivityList
         :selectedActivityId.sync="selectedActivityId"
         :activities="filteredActivities"
+
       />
     </div>
-    <Modal v-if="selectedActivityData" @close="selectedActivityId = null">
+    <Modal
+      v-if="selectedActivityData"
+      @close="selectedActivityId = null"
+    >
       <ZoomActivityInfo
         :activity="selectedActivityData"
       />

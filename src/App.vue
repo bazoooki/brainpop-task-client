@@ -20,5 +20,12 @@
   font-size: 0.75rem; /* 12px */
   line-height: 1rem; /* 16px */
 }
+.icon-btn {
+  cursor: pointer;
+  background: none;
+  color: #0f766e;
+  border: none;
+  font-weight: bolder;
+}
 
 </style>

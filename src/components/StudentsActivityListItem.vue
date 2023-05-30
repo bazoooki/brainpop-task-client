@@ -20,11 +20,14 @@
       <div v-if="activity.is_scored" class="activity-score">
         Score {{ activity.score }} / {{ activity.possible_score }}
       </div>
-      <button class="view-work-btn" v-if="activity.is_zoom_view" @click="openZoom">
+      <button class="icon-btn" v-if="activity.is_zoom_view" @click="openZoom">
         <span>
           <font-awesome-icon icon="fa-solid fa-eye"/>
           View work
         </span>
+      </button>
+      <button class="icon-btn hide-btn" @click="toggleVisible">
+          <font-awesome-icon icon="fa-solid fa-eye-slash"/>
       </button>
     </div>
   </div>
@@ -39,6 +42,9 @@ export default {
   name: 'StudentsActivityListItem',
   components: {DateTime, ActivityTopicIcon},
   methods: {
+    toggleVisible() {
+      this.$emit('toggleVisible', this.activity.id)
+    },
     openZoom() {
       this.$emit('update:selectedActivityId', this.activity.id)
     }
@@ -58,6 +64,7 @@ export default {
   border-radius: 3px;
   margin-top: 1rem;
   display: flex;
+  position: relative;
   justify-items: center;
   justify-content: space-between;
 }
@@ -97,11 +104,16 @@ export default {
   font-weight: bolder;
 }
 
-.view-work-btn {
+.icon-btn {
   cursor: pointer;
   background: none;
   color: #0f766e;
   border: none;
   font-weight: bolder;
+}
+.hide-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 </style>
