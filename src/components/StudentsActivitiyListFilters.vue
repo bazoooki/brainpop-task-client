@@ -1,13 +1,13 @@
 <template>
 
-  <div class="list-filters">
+  <div class="w-full space-y-2">
     <div class="list-filters-search">
       <SearchAutocomplete :suggestions="suggestions" v-on="$listeners"/>
     </div>
-    <div :style="{margin: '10px 0px'}">Filter by:</div>
-    <div class="list-filters-type">
+    <div class="text-sm ">Filter by:</div>
+    <div class="list-filters-type space-y-1">
       <StudentsActivityListFiltersButton
-        value="all"
+        value="all_work"
         :selected="!!activityTypeFilters.includes('all')"
         @toggleSelect="toggleSelectedType"
         key="all"
@@ -80,17 +80,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.list-filters {
-  display: flex;
-  flex-direction: column;
-}
-
-.list-filters-type {
-  display: flex;
-  justify-items: left;
-  padding-bottom: 10px;
-}
-
-</style>

@@ -1,12 +1,21 @@
 <template>
-  <div :style="{position: 'relative'}">
-    <div class="clear-hidden-items" v-if="!!hiddenItemsId.length">
-      <button @click="clearHidden" class="icon-btn">clear {{hiddenItemsId.length }} hidden items</button>
+  <div class="w-full space-y-4">
+    <div class=" relative">
+      <div class="absolute -bottom-14 right-0 text-xs" v-if="!!hiddenItemsId.length">
+        <button @click="clearHidden" class="icon-btn text-xxs text-primary m-2">
+          clear {{ hiddenItemsId.length }} hidden items
+        </button>
+      </div>
     </div>
     <template v-for="(group, month) in groupedActivitiesByMonth">
-      <div :key="month" class="month-title">{{ month }}</div>
+      <div :key="month"
+           class="bg-yellow-200 inline-block py-1 rounded-xl bg-opacity-25 text-xs font-light text-gray-600 px-3 relative w-20 text-center">
+        <span>{{ month }} </span>
+        <div class="dec-connector w-0.5 h-4 bg-gray-300 absolute left-10 first:hidden -top-4"></div>
+      </div>
       <template v-for="activity in group">
-        <StudentActivityListItem @toggleVisible="toggleVisible" v-on="$listeners" :activity="activity" :key="activity.id"/>
+        <StudentActivityListItem @toggleVisible="toggleVisible" v-on="$listeners"
+                                 :activity="activity" :key="activity.id"/>
       </template>
     </template>
 
@@ -28,20 +37,20 @@ export default {
     }
   },
   methods: {
-    clearHidden () {
+    clearHidden() {
       this.hiddenItemsId = []
       this.updateLocalStorage([])
     },
     toggleVisible(activityId) {
-      if (this.hiddenItemsId.includes(activityId) ) {
-        this.hiddenItemsId = this.hiddenItemsId.filter(item=>item !== activityId)
+      if (this.hiddenItemsId.includes(activityId)) {
+        this.hiddenItemsId = this.hiddenItemsId.filter(item => item !== activityId)
       } else {
         this.hiddenItemsId.push(activityId)
       }
 
       this.updateLocalStorage(this.hiddenItemsId)
     },
-    updateLocalStorage (val) {
+    updateLocalStorage(val) {
       localStorage.setItem("studentActivitiesHiddenRows", JSON.stringify(val));
     }
   },
@@ -63,7 +72,7 @@ export default {
           ...activity,
           created_month,
         }
-      }).filter(item=>!this.hiddenItemsId.includes(item.id));
+      }).filter(item => !this.hiddenItemsId.includes(item.id));
       return groupByKey(list, "created_month")
     }
   },
@@ -72,21 +81,24 @@ export default {
   },
 };
 </script>
-<style>
-.clear-hidden-items {
-  width: 100%;
-  position: absolute;
-  font-size: 11px;
-  top:20px;
-  text-align: right;
-}
-.month-title {
-  background-color: cornsilk;
-  margin-top: 1rem;
-  padding: 0px 12px;
-  border-radius: 12px;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: lighter;
-}
+<style scoped>
+  .dec-connector:first-of-type {display: none !important;}
 </style>
+<!--<style>-->
+<!--.clear-hidden-items {-->
+<!--  width: 100%;-->
+<!--  position: absolute;-->
+<!--  font-size: 11px;-->
+<!--  top:20px;-->
+<!--  text-align: right;-->
+<!--}-->
+<!--.month-title {-->
+<!--  background-color: cornsilk;-->
+<!--  margin-top: 1rem;-->
+<!--  padding: 0px 12px;-->
+<!--  border-radius: 12px;-->
+<!--  display: inline-block;-->
+<!--  font-size: 14px;-->
+<!--  font-weight: lighter;-->
+<!--}-->
+<!--</style>-->

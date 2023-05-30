@@ -93,12 +93,7 @@ export default {
 </script>
 
 <style scoped>
-.activities {
-  position: relative;
-  text-align: left;
-  height: calc(100vh - 3rem);
-  z-index: 2;
-}
+
 
 </style>
 

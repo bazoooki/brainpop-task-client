@@ -1,5 +1,6 @@
 <template>
-  <div class="activity-list-item">
+  <div class="w-full border border-gray-200 p-5 flex items-center justify-between relative">
+    <div class="w-0.5 h-4 bg-gray-300 absolute left-10 -top-4"></div>
     <div class="activity-info">
       <ActivityTopicIcon
         :topic-data="activity.topic_data"
@@ -30,6 +31,7 @@
           <font-awesome-icon icon="fa-solid fa-eye-slash"/>
       </button>
     </div>
+
   </div>
 </template>
 

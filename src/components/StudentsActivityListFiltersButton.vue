@@ -1,6 +1,6 @@
 <template>
-  <button class="filter-btn" @click="onClick" :class="[selected ? 'active' : '']">
-    {{ value | capitalize }}
+  <button class="border border-primary-bold font-bold  rounded px-2 leading-none mr-1 text-xxs py-1.5 capitalize" @click="onClick" :class="[selected ? 'bg-primary-lighter bg-opacity-20' : '']">
+    <span class="text-primary">{{ value | capitalize }}</span>
   </button>
 
 </template>
@@ -38,25 +38,25 @@ export default {
 }
 </script>
 
-<style scoped>
-.filter-btn {
-  border: 1px solid #0f766e;
-  cursor: pointer;
-  color: #0f766e;
-  font-weight: bolder;
-  font-size: 12px;
-  margin: 0px 8px 0px 0px;
-  border-radius: 3px;
-  padding: 5px 7px;
-  background: white;
-  text-transform: capitalize;
-}
+<!--<style scoped>-->
+<!--.filter-btn {-->
+<!--  border: 1px solid #0f766e;-->
+<!--  cursor: pointer;-->
+<!--  color: #0f766e;-->
+<!--  font-weight: bolder;-->
+<!--  font-size: 12px;-->
+<!--  margin: 0px 8px 0px 0px;-->
+<!--  border-radius: 3px;-->
+<!--  padding: 5px 7px;-->
+<!--  background: white;-->
+<!--  text-transform: capitalize;-->
+<!--}-->
 
-.check-sign {
-  color: #0f766e;
-}
+<!--.check-sign {-->
+<!--  color: #0f766e;-->
+<!--}-->
 
-.filter-btn.active, .filter-btn:hover {
-  background: rgba(72, 209, 204, 0.12);
-}
-</style>
+<!--.filter-btn.active, .filter-btn:hover {-->
+<!--  background: rgba(72, 209, 204, 0.12);-->
+<!--}-->
+<!--</style>-->

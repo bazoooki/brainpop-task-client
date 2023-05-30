@@ -8,17 +8,22 @@
 
 
 import ZoomActivityInfo from "@/components/ZoomActivityInfo.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'Zoom',
   components: {ZoomActivityInfo},
   computed: {
+    ...mapGetters(['getActivityById']),
     activityData() {
-      return this.$store.getters.getActivityById(this.$route.params.id)
+      return this.getActivityById(this.$route.params.id)
     },
   },
+  methods: {
+    ...mapActions(['fetchActivities']),
+  },
   mounted() {
-    this.$store.dispatch("fetchActivities");
+    this.fetchActivities()
   }
 }
 </script>
