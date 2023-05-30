@@ -11,9 +11,10 @@
       :date="topicDate"
     />
     <div class="font-medium text-3xl my-2 lg:my-4 flex justify-start w-full">
-      {{activity.comment}}
+      {{ activity.comment }}
     </div>
-    <div v-if="isScore" class="flex w-full my-4 lg:my-4 px-1 justify-start text-lg text-primary font-light">
+    <div v-if="isScore"
+         class="flex w-full my-4 lg:my-4 px-1 justify-start text-lg text-primary font-light">
       Score <span class="font-bold px-1">{{ activity.score }}/{{ activity.possible_score }}</span>
     </div>
   </div>
@@ -50,32 +51,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.zoom-activity-info {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  color: #222
-}
-
-
-.teacher-comment {
-  font-size: 24px;
-  text-align: left;
-  width: 100%;
-  color: black;
-  font-weight: bold;
-  margin: 30px 0px;
-}
-.activity-score {
-  padding: 0 6px;
-  text-align: left;
-  width: 100%;
-  color: #0f766e;
-  font-size: 24px;
-  font-weight: bolder;
-  margin: 30px 0px;
-}
-
-</style>
 

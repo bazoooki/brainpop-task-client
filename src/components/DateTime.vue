@@ -10,7 +10,6 @@ export default {
   name: 'DateTime',
   props: {
     date: {
-
       required: true,
       type: Date,
     },

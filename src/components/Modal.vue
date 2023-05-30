@@ -33,26 +33,9 @@ export default {
   padding: 30px;
   background: white;
   width: 600px;
-
   border-radius: 15px;
   border: 4px solid #aaa;
   transform: translate(-50%, -50%);
 }
 
-.close-btn {
-  //width: 35px;
-  //height: 35px;
-  //position: absolute;
-  //top: 10px;
-  //right: 10px;
-  //cursor: pointer;
-  //font-weight: bold;
-  //color: #888;
-  //padding: 0px;
-  //margin: 0px;
-  //font-size: 20px;
-  //border: 3px solid #aaa;
-  //border-radius: 100%;
-  //text-align: center;
-}
 </style>

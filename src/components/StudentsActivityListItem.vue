@@ -81,14 +81,6 @@ export default {
 
 <style scoped>
 
-.activity-topic {
-  display: flex;
-  margin: 0px 10px;
-  justify-items: left;
-  flex-direction: column;
-  text-align: left;
-}
-
 .topic-title {
   text-transform: capitalize;
   font-weight: bold;

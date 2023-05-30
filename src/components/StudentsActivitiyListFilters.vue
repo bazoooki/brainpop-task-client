@@ -1,31 +1,24 @@
 <template>
-
   <div class="w-full space-y-2">
     <div class="list-filters-search">
-      <SearchAutocomplete :suggestions="suggestions" v-on="$listeners"/>
+      <SearchAutocomplete
+        :suggestions="suggestions"
+        v-on="$listeners"
+      />
     </div>
     <div class="text-sm ">Filter by:</div>
     <div class="list-filters-type space-y-1">
-<!--      <StudentsActivityListFiltersButton-->
-<!--        :value="all_work"-->
-<!--        :selected="!!activityTypeFilters.includes('all_work')"-->
-<!--        @toggleSelect="toggleSelectedType"-->
-<!--        key="all"-->
-<!--      />-->
-
       <StudentsActivityListFiltersButton
         v-for="activityType in activityTypes"
         :selected="!!activityTypeFilters.includes(activityType)"
         :value="activityType"
         :key="activityType"
         @toggleSelect="toggleSelectedType"/>
-
     </div>
   </div>
 </template>
 
 <script>
-
 
 import SearchAutocomplete from "@/components/SearchAutoComplete.vue";
 import StudentsActivityListFiltersButton from "@/components/StudentsActivityListFiltersButton.vue";

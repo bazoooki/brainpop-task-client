@@ -14,8 +14,11 @@
         <div class="dec-connector w-0.5 h-4 bg-gray-300 absolute left-10 first:hidden -top-4"></div>
       </div>
       <template v-for="activity in group">
-        <StudentActivityListItem v-if="!!!activity.hidden" @hideActivity="handledActivityHide" v-on="$listeners"
-                                 :activity="activity" :key="activity.id"/>
+        <StudentActivityListItem
+          v-if="!!!activity.hidden" @hideActivity="handledActivityHide"
+          v-on="$listeners"
+          :activity="activity" :key="activity.id"
+        />
       </template>
     </template>
 
@@ -77,7 +80,7 @@ export default {
         }
       })
         .filter(item => !this.hiddenItemsId.includes(item.id))
-        .sort((a,b) => (new Date(b.d_created * 1000)) - new Date(a.d_created * 1000))
+        .sort((a, b) => (new Date(b.d_created * 1000)) - new Date(a.d_created * 1000))
       return groupByKey(list, "created_month")
     }
   },
@@ -86,26 +89,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.dec-connector:nth-child(0) {
-  display: none !important;
-}
-</style>
-<!--<style>-->
-<!--.clear-hidden-items {-->
-<!--  width: 100%;-->
-<!--  position: absolute;-->
-<!--  font-size: 11px;-->
-<!--  top:20px;-->
-<!--  text-align: right;-->
-<!--}-->
-<!--.month-title {-->
-<!--  background-color: cornsilk;-->
-<!--  margin-top: 1rem;-->
-<!--  padding: 0px 12px;-->
-<!--  border-radius: 12px;-->
-<!--  display: inline-block;-->
-<!--  font-size: 14px;-->
-<!--  font-weight: lighter;-->
-<!--}-->
-<!--</style>-->

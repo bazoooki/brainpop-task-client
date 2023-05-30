@@ -9,17 +9,14 @@ export const humanize = (str) => {
 }
 
 
-export const isActivityZoom = (activity) => activityTypeSettings.find(item=>item.type === activity).zoom
-export const isActivityScore = (activity) => activityTypeSettings.find(item=>item.type === activity).score
-
-const activityTypeSettings = [
-  {type: 'challenge', score:true , zoom: true},
-  {type: 'make_a_map',score: false, zoom: true},
-  {type: 'draw_about_it',score: false, zoom: true},
-  {type: 'easy_quiz',score: true, zoom: true},
-  {type: 'make_a_movie',score: false, zoom: true},
-  {type: 'movie',score: false, zoom: false},
-  {type: 'quiz',score: true, zoom: true},
-  {type: 'related_reading',score: false, zoom: false},
-  {type: 'word_play',score: false, zoom: true},
-]
+export function prepareV2Data(data) {
+  let arr = []
+  data.map(item => {
+    const activities = item.activities.map(activity => ({
+      ...activity,
+      resource_type: item.resource_type
+    }))
+    arr = [...arr, ...activities]
+  })
+  return arr
+}

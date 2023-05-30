@@ -38,25 +38,3 @@ export default {
 }
 </script>
 
-<!--<style scoped>-->
-<!--.filter-btn {-->
-<!--  border: 1px solid #0f766e;-->
-<!--  cursor: pointer;-->
-<!--  color: #0f766e;-->
-<!--  font-weight: bolder;-->
-<!--  font-size: 12px;-->
-<!--  margin: 0px 8px 0px 0px;-->
-<!--  border-radius: 3px;-->
-<!--  padding: 5px 7px;-->
-<!--  background: white;-->
-<!--  text-transform: capitalize;-->
-<!--}-->
-
-<!--.check-sign {-->
-<!--  color: #0f766e;-->
-<!--}-->
-
-<!--.filter-btn.active, .filter-btn:hover {-->
-<!--  background: rgba(72, 209, 204, 0.12);-->
-<!--}-->
-<!--</style>-->

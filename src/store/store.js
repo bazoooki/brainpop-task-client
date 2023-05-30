@@ -2,20 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
 import {SET_ACTIVITY_DATA, HIDE_ACTIVITY, DISPLAY_ALL_ACTIVITIES} from "@/store/mutation-types";
+import {prepareV2Data} from "@/utils/utils";
 
 Vue.use(Vuex)
 
-function prepareData(data) {
-  let arr = []
-  data.map(item => {
-    const activities = item.activities.map(activity => ({
-      ...activity,
-      resource_type: item.resource_type
-    }))
-    arr = [...arr, ...activities]
-  })
-  return arr
-}
+
 
 
 const store = new Vuex.Store({
@@ -67,7 +58,7 @@ const store = new Vuex.Store({
       axios
         .get(apiURL)
         .then(res => {
-          const activityData = prepareData(res.data)
+          const activityData = prepareV2Data(res.data)
           commit(SET_ACTIVITY_DATA, activityData);
         })
         .catch(e => {
