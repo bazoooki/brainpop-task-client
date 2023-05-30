@@ -20,7 +20,11 @@
       <div v-if="activity.is_scored" class="activity-score">
         Score {{ activity.score }} / {{ activity.possible_score }}
       </div>
-      <button class="view-work-btn" v-if="activity.is_zoom_view" @click="openZoom">👁 View work
+      <button class="view-work-btn" v-if="activity.is_zoom_view" @click="openZoom">
+        <span>
+          <font-awesome-icon icon="fa-solid fa-eye"/>
+          View work
+        </span>
       </button>
     </div>
   </div>

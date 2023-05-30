@@ -1,5 +1,6 @@
 <template>
   <div class="activities">
+
     <div class="activity-list">
       <StudentActivityListFilters
         :activities="activities"
@@ -48,11 +49,12 @@ export default {
       return this.$store.state.activities
     },
     filteredActivities() {
-      return  this.$store.state.activities.filter(item => (
+      return this.$store.state.activities.filter(item => (
         humanize(item.resource_type).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
         humanize(item.topic_title).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
         humanize(item.topic_data.name).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1
-      ));
+      ))
+        .filter(item => (this.filters.activityType === item.resource_type || this.filters.activityType === 'all'))
     },
   },
   mounted() {

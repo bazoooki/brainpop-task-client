@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal-container">
       <button class="close-btn" @click="$emit('close')">
-        X
+        <font-awesome-icon icon="fa-solid fa-xmark"/>
       </button>
       <slot></slot>
     </div>

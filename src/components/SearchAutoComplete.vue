@@ -10,7 +10,9 @@
         @keydown.up="onArrowUp"
         @keydown.enter="onEnter"
       />
-      <button></button>
+      <button>
+        <font-awesome-icon icon="fa-solid fa-search"/>
+      </button>
     </div>
     <ul
       id="autocomplete-results"
@@ -83,6 +85,7 @@ export default {
       });
     },
     onChange() {
+      this.$emit('update:activityTypeFilter', 'all')
       this.updateSearch(this.search)
       this.filterResults();
       this.isOpen = true;
@@ -140,6 +143,8 @@ export default {
 .autocomplete button {
   width: 30px;
   border: none;
+  cursor: pointer;
+  color: white;
   background: #0f766e;
   border: 1px solid #047857;
   border-left: 0px;
@@ -147,6 +152,10 @@ export default {
   height: 30px;
   position: relative;
   display: inline-block;
+}
+
+.autocomplete button:hover {
+  background: #4AAE9B;
 }
 
 .autocomplete-results {

@@ -1,24 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
-import { humanize} from "@/utils/utils";
+import {humanize, isActivityScore, isActivityZoom} from "@/utils/utils";
 
 Vue.use(Vuex)
 
-const ZOOM_MODE_RESOURCES_TYPES = [
-  "challenge",
-  "make_a_map",
-  "draw_about_it",
-  "easy_quiz",
-  "make_a_movie",
-  "quiz",
-  "word_play",
-]
-const WITH_SCORE_RESOURCES_TYPES = [
-  "challenge",
-  "easy_quiz",
-  "quiz",
-]
+
 
 const store = new Vuex.Store({
   state: {
@@ -37,8 +24,8 @@ const store = new Vuex.Store({
           topic_data: activity.topic_data,
           comment: activity.comment,
           topic_title: `${humanize(activity.topic_data.name)} ${humanize(activity.resource_type)}`,
-          is_zoom_view: ZOOM_MODE_RESOURCES_TYPES.includes(activity.resource_type),
-          is_scored: (WITH_SCORE_RESOURCES_TYPES.includes(activity.resource_type) && !!activity.score.length && !!activity.possible_score.length),
+          is_zoom_view: isActivityZoom(activity.resource_type),
+          is_scored: (isActivityScore(activity.resource_type) && !!activity.score.length && !!activity.possible_score.length),
           createdAt: new Date(activity.d_created * 1000),
         };
       });
