@@ -12,6 +12,7 @@
         :selected="activityTypeFilter"
         key="all"
       />
+
       <StudentsActivityListFiltersButton
         v-for="activityType in activityTypes"
         :value="activityType"
@@ -28,6 +29,18 @@
 
 import SearchAutocomplete from "@/components/SearchAutoComplete.vue";
 import StudentsActivityListFiltersButton from "@/components/StudentsActivityListFiltersButton.vue";
+import {
+  CHALLENGE,
+  MAKE_A_MAP,
+  DRAW_ABOUT_IT,
+  EASY_QUIZ,
+  MAKE_A_MOVIE,
+  MOVIE,
+  QUIZ,
+  RELATED_READING,
+  WORD_PLAY
+} from "@/utils/activities.consts";
+import {humanize} from "@/utils/utils";
 
 export default {
   name: 'StudentsActivityListFilters',
@@ -38,16 +51,25 @@ export default {
       if (this.activityTypeFilter === value) {
         return
       }
-
       this.$emit('update:activityTypeFilter', value)
     }
   },
   computed: {
     activityTypes() {
-      return [...new Set(this.activities.map(item => item.resource_type))]
+      return [
+        CHALLENGE,
+        MAKE_A_MAP,
+        DRAW_ABOUT_IT,
+        EASY_QUIZ,
+        MAKE_A_MOVIE,
+        MOVIE,
+        QUIZ,
+        RELATED_READING,
+        WORD_PLAY
+      ]
     },
     suggestions() {
-      return this.activities.map(item => item.topic_title)
+      return this.activities.map(item => `${humanize(item.topic_data.name)} ${humanize(item.resource_type)}`)
     }
   },
   props: {

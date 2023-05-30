@@ -1,5 +1,7 @@
-import {humanize, isActivityScore, isActivityZoom} from "@/utils/utils";
+import {humanize} from "@/utils/utils";
 import axios from "axios";
+import {activityTypesSettings} from "@/utils/activities.consts";
+
 
 
 function prepareData(data) {
@@ -31,8 +33,8 @@ const activity = {
           topic_data: activity.topic_data,
           comment: activity.comment,
           topic_title: `${humanize(activity.topic_data.name)} ${humanize(activity.resource_type)}`,
-          is_zoom_view: isActivityZoom(activity.resource_type),
-          is_scored: (isActivityScore(activity.resource_type) && !!activity.score.length && !!activity.possible_score.length),
+          is_zoom_view: !!activityTypesSettings[activity.resource_type].zoom,
+          is_scored: (!!activityTypesSettings[activity.resource_type].score && !!activity.score.length && !!activity.possible_score.length),
           createdAt: new Date(activity.d_created * 1000),
         };
       });
@@ -49,7 +51,7 @@ const activity = {
       axios
         .get(apiURL)
         .then(res => {
-          commit("setActivityData", res.data);
+          commit(SET_ACTIVITY_DATA, res.data);
         })
         .catch(e => {
           console.log(e);
@@ -63,7 +65,7 @@ const activity = {
           console.log('api v2 data: ', res.data)
           const data = prepareData(res.data)
           console.log('prepared v2 data: ', data)
-          commit("setActivityData", data);
+          commit(SET_ACTIVITY_DATA, data);
         })
         .catch(e => {
           console.log(e);

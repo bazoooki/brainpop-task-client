@@ -1,11 +1,10 @@
 <template>
   <div :style="iconWrapper">
     <img
-      v-if="imageName"
       :alt="topicData.name"
       :width="size"
       :height="size"
-      :src="require(`../assets/topics/${imageName}`)"
+      :src="topicData.icon_path"
     />
     <div v-if="junior" :style="iconJunior">
       <span>Jr.</span>
@@ -57,10 +56,5 @@ export default {
       }
     }
   },
-  computed: {
-    imageName() {
-      return this.topicData.icon_path.split("/assets/topics/")[1] || false
-    }
-  }
 };
 </script>

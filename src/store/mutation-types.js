@@ -1,0 +1,1 @@
+export const SET_ACTIVITY_DATA = 'SET_ACTIVITY_DATA'

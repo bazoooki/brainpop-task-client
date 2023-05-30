@@ -10,7 +10,6 @@
       <StudentsActivityList
         :selectedActivityId.sync="selectedActivityId"
         :activities="filteredActivities"
-
       />
     </div>
     <Modal
@@ -31,6 +30,7 @@ import StudentActivityListFilters from "@/components/StudentsActivitiyListFilter
 import ZoomActivityInfo from "@/components/ZoomActivityInfo.vue";
 import Modal from "@/components/Modal.vue";
 import {humanize} from "@/utils/utils";
+import {mapActions, mapGetters} from "vuex";
 
 
 export default {
@@ -51,17 +51,21 @@ export default {
       }
     }
   },
+  methods: {
+    ...mapActions(['fetchActivities', 'fetchActivitiesV2'])
+  },
   computed: {
+    ...mapGetters(['getActivityById', 'activities']),
     selectedActivityData() {
-      return this.activities.find(activity => activity.id === this.selectedActivityId)
+      return this.getActivityById(this.selectedActivityId)
     },
     activities() {
-      return this.$store.state.activity.activities
+      return this.$store.state.activities
     },
     filteredActivities() {
-      return this.$store.state.activity.activities.filter(item => (
+      return this.activities.filter(item => (
         humanize(item.resource_type).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
-        humanize(item.topic_title).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
+        humanize( `${humanize(item.topic_data.name)} ${humanize(item.resource_type)}`).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
         humanize(item.topic_data.name).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1
       ))
         .filter(item => (this.filters.activityType === item.resource_type || this.filters.activityType === 'all'))
@@ -69,9 +73,9 @@ export default {
   },
   mounted() {
     if (!!this.apiV2) {
-      this.$store.dispatch("fetchActivitiesV2");
+      this.fetchActivitiesV2();
     } else {
-      this.$store.dispatch("fetchActivities");
+      this.fetchActivities();
     }
   }
 }

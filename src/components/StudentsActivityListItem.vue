@@ -8,19 +8,19 @@
       />
       <div class="activity-topic">
         <div class="topic-title">
-          {{ activity.topic_title }}
+          {{ topicTitle }}
         </div>
         <DateTime
-          :date="activity.createdAt"
+          :date="topicDate"
           small
         />
       </div>
     </div>
     <div class="activity-settings">
-      <div v-if="activity.is_scored" class="activity-score">
+      <div v-if="isScore" class="activity-score">
         Score {{ activity.score }} / {{ activity.possible_score }}
       </div>
-      <button class="icon-btn" v-if="activity.is_zoom_view" @click="openZoom">
+      <button class="icon-btn" v-if="isZoom" @click="openZoom">
         <span>
           <font-awesome-icon icon="fa-solid fa-eye"/>
           View work
@@ -37,6 +37,8 @@
 
 import ActivityTopicIcon from "@/components/ActivityTopicIcon.vue";
 import DateTime from "@/components/DateTime.vue";
+import {activityTypesSettings} from "@/utils/activities.consts";
+import {humanize} from "@/utils/utils";
 
 export default {
   name: 'StudentsActivityListItem',
@@ -47,6 +49,20 @@ export default {
     },
     openZoom() {
       this.$emit('update:selectedActivityId', this.activity.id)
+    }
+  },
+  computed: {
+    topicDate () {
+      return new Date(this.activity.d_created * 1000)
+    },
+    topicTitle () {
+      return `${humanize(this.activity.topic_data.name)} ${humanize(this.activity.resource_type)}`
+    },
+    isScore() {
+      return (!!activityTypesSettings[this.activity.resource_type].score && !!this.activity.score.length && !!this.activity.possible_score.length)
+    },
+    isZoom () {
+      return !!activityTypesSettings[this.activity.resource_type].zoom
     }
   },
   props: {
