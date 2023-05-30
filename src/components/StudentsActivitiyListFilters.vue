@@ -8,15 +8,15 @@
     <div class="list-filters-type">
       <StudentsActivityListFiltersButton
         value="all"
+        :selected="!!activityTypeFilters.includes('all')"
         @toggleSelect="toggleSelectedType"
-        :selected="activityTypeFilter"
         key="all"
       />
 
       <StudentsActivityListFiltersButton
         v-for="activityType in activityTypes"
+        :selected="!!activityTypeFilters.includes(activityType)"
         :value="activityType"
-        :selected="activityTypeFilter"
         :key="activityType"
         @toggleSelect="toggleSelectedType"/>
 
@@ -48,10 +48,7 @@ export default {
 
   methods: {
     toggleSelectedType(value) {
-      if (this.activityTypeFilter === value) {
-        return
-      }
-      this.$emit('update:activityTypeFilter', value)
+      this.$emit('toggleActivityTypeFilter', value)
     }
   },
   computed: {
@@ -73,9 +70,8 @@ export default {
     }
   },
   props: {
-    activityTypeFilter: {
-      type: String,
-      required: true
+    activityTypeFilters: {
+      type: Array
     },
     activities: {
       type: Array,

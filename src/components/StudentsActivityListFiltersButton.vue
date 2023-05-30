@@ -1,9 +1,5 @@
 <template>
-  <button class="filter-btn" @click="onClick" :class="[selected === value ? 'active' : '']">
-
-    <span v-if="selected === value" class="check-sign">
-      <font-awesome-icon icon="fa-solid fa-check"/>
-    </span>
+  <button class="filter-btn" @click="onClick" :class="[selected ? 'active' : '']">
     {{ value | capitalize }}
   </button>
 
@@ -35,7 +31,8 @@ export default {
       required: true
     },
     selected: {
-      type: String
+      type: Boolean,
+      required: true,
     }
   }
 }

@@ -85,7 +85,7 @@ export default {
       });
     },
     onChange() {
-      this.$emit('update:activityTypeFilter', 'all')
+      this.$emit('toggleActivityTypeFilter', 'all')
       this.updateSearch(this.search)
       this.filterResults();
       this.isOpen = true;
