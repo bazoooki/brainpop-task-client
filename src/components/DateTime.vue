@@ -23,9 +23,10 @@ export default {
   computed: {
     formattedDate() {
       const created_month = new Intl
-        .DateTimeFormat('en-US', {
-          month: 'long'
-        })
+        .DateTimeFormat('en-US',
+          {
+            month: 'long'
+          })
         .format(this.date)
       const hours = this.date.getHours()
       const minutes = this.date.getMinutes()

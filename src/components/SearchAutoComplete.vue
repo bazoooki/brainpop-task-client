@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     setResult(result) {
+      this.updateSearch(result)
       this.search = result;
       this.isOpen = false;
     },
@@ -82,8 +83,7 @@ export default {
       });
     },
     onChange() {
-      this.$emit('input', this.search);
-
+      this.updateSearch(this.search)
       this.filterResults();
       this.isOpen = true;
     },
@@ -103,6 +103,9 @@ export default {
         this.arrowCounter = this.arrowCounter - 1;
       }
     },
+    updateSearch(str) {
+      this.$emit('update:search', str);
+    },
     onEnter() {
       this.search = this.results[this.arrowCounter];
       this.isOpen = false;
@@ -115,27 +118,30 @@ export default {
 <style scoped>
 .autocomplete {
   position: relative;
-
+  z-index: 10;
   display: inline-block;
-  width: 350px;
+  width: 330px;
 }
+
 .autocomplete .search-input {
   display: flex;
   justify-items: center;
 }
+
 .autocomplete input {
   width: 300px;
   text-indent: 5px;
-  border: 1px solid #ccc;;
+  border: 1px solid #999;;
   border-right: 0px;
   border-radius: 3px 0px 0px 3px;
   text: 16px;
 }
-.autocomplete button  {
+
+.autocomplete button {
   width: 30px;
   border: none;
   background: #0f766e;
-  border:1px solid #047857;
+  border: 1px solid #047857;
   border-left: 0px;
   border-radius: 0px 3px 3px 0;
   height: 30px;
@@ -144,7 +150,7 @@ export default {
 }
 
 .autocomplete-results {
-  border: 2px solid #eeeeee;
+  border: 1px solid #999;
   padding: 2px;
   margin: 0;
   height: 120px;
