@@ -1,6 +1,7 @@
 <template>
   <div class="activities">
-    <StudentActivities />
+    API V2
+    <StudentActivities :api-v2="true" />
   </div>
 </template>
 
@@ -11,7 +12,7 @@
 import StudentActivities from "@/components/StudentActivities.vue";
 
 export default {
-  name: 'Activities',
+  name: 'Activities2',
   components: {StudentActivities},
 }
 </script>

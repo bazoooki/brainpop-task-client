@@ -48,7 +48,7 @@ export default {
   color: #0f766e;
   font-weight: bolder;
   font-size: 12px;
-  margin: 0px 3px;
+  margin: 0px 8px 0px 0px;
   border-radius: 3px;
   padding: 5px 7px;
   background: white;

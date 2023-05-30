@@ -4,7 +4,8 @@
     <div class="list-filters-search">
       <SearchAutocomplete :suggestions="suggestions" v-on="$listeners"/>
     </div>
-    <div class="list-filters-type-buttons">
+    <div :style="{margin: '10px 0px'}">Filter by:</div>
+    <div class="list-filters-type">
       <StudentsActivityListFiltersButton
         value="all"
         @toggleSelect="toggleSelectedType"
@@ -68,8 +69,10 @@ export default {
   flex-direction: column;
 }
 
-.list-filters-type-buttons {
-  padding: 10px;
+.list-filters-type {
+  display: flex;
+  justify-items: left;
+  padding-bottom: 10px;
 }
 
 </style>
