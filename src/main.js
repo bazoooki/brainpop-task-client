@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faXmark, faSearch, faEye, faCheck,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
+import './assets/tailwind.css'
+
 /* add icons to the library */
 library.add(faXmark, faSearch, faEye, faCheck, faEyeSlash)
 
