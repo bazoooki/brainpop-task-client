@@ -10,6 +10,12 @@
     <DateTime
       :date="activity.createdAt"
     />
+    <div class="teacher-comment">
+      {{activity.comment}}
+    </div>
+    <div v-if="activity.is_scored" class="activity-score">
+      Score {{ activity.score }} / {{ activity.possible_score }}
+    </div>
   </div>
 </template>
 
@@ -42,5 +48,23 @@ export default {
 h1 {
   font-weight: bold
 }
+.teacher-comment {
+  font-size: 24px;
+  text-align: left;
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  margin: 30px 0px;
+}
+.activity-score {
+  padding: 0 6px;
+  text-align: left;
+  width: 100%;
+  color: #0f766e;
+  font-size: 24px;
+  font-weight: bolder;
+  margin: 30px 0px;
+}
+
 </style>
 

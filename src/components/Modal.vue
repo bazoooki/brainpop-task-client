@@ -33,7 +33,7 @@ export default {
   padding: 30px;
   background: white;
   width: 600px;
-  height: 350px;
+
   border-radius: 15px;
   border: 4px solid #aaa;
   transform: translate(-50%, -50%);
