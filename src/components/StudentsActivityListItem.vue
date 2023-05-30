@@ -18,6 +18,7 @@
       </div>
     </div>
     <div class="activity-settings">
+
       <div v-if="isScore" class="activity-score">
         Score {{ activity.score }} / {{ activity.possible_score }}
       </div>
@@ -30,7 +31,7 @@
       </button>
       <button
         class="text-primary  hide-btn text-xxs flex items-center justify-between px-2 hover:bg-primary-bold hover:bg-opacity-10 rounded opacity-0 group-hover:opacity-100"
-        @click="toggleVisible">
+        @click="hideActivity">
         <span class="px-1">hide</span>
         <font-awesome-icon icon="fa-solid fa-eye-slash mx-0"/>
       </button>
@@ -50,8 +51,8 @@ export default {
   name: 'StudentsActivityListItem',
   components: {DateTime, ActivityTopicIcon},
   methods: {
-    toggleVisible() {
-      this.$emit('toggleVisible', this.activity.id)
+    hideActivity() {
+      this.$emit('hideActivity', this.activity.id)
     },
     openZoom() {
       this.$emit('update:selectedActivityId', this.activity.id)

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
-import {SET_ACTIVITY_DATA} from "@/store/mutation-types";
+import {SET_ACTIVITY_DATA, HIDE_ACTIVITY, DISPLAY_ALL_ACTIVITIES} from "@/store/mutation-types";
 
 Vue.use(Vuex)
 
@@ -26,6 +26,17 @@ const store = new Vuex.Store({
     [SET_ACTIVITY_DATA](state, activities) {
       state.activities = activities
     },
+    [HIDE_ACTIVITY](state, activityId) {
+      let activity = state.activities.find(item=>item.id === activityId)
+      if (!activity) {
+        return
+      }
+      activity.hidden = true
+      state.activities = [...state.activities.filter(item=>item.id !== activity.id), activity]
+    },
+    [DISPLAY_ALL_ACTIVITIES](state) {
+      state.activities = state.activities.map(item=>({...item, hidden: false}))
+    }
   },
   getters: {
     getActivityById: (state) => (id) => {
@@ -33,6 +44,13 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    hideActivity({ commit }, activityId) {
+      console.log('actions hideActivity: ', activityId)
+      commit(HIDE_ACTIVITY, activityId);
+    },
+    clearHiddenActivities({commit}) {
+      commit(DISPLAY_ALL_ACTIVITIES)
+    },
     fetchActivities({commit}) {
       const apiURL = "http://localhost:3000/activities/v1";
       axios
@@ -49,9 +67,7 @@ const store = new Vuex.Store({
       axios
         .get(apiURL)
         .then(res => {
-
           const activityData = prepareData(res.data)
-
           commit(SET_ACTIVITY_DATA, activityData);
         })
         .catch(e => {
@@ -59,6 +75,12 @@ const store = new Vuex.Store({
         });
     }
   },
+});
+
+store.subscribe((mutation, state) => {
+  // Store the state object as a JSON string
+  const hiddenActivityIds = state.activities.filter(item=>item.hidden).map(item=>item.id)
+  localStorage.setItem("activityStoreHiddenRows", JSON.stringify(hiddenActivityIds));
 });
 
 

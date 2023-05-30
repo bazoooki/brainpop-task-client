@@ -14,7 +14,7 @@
         <div class="dec-connector w-0.5 h-4 bg-gray-300 absolute left-10 first:hidden -top-4"></div>
       </div>
       <template v-for="activity in group">
-        <StudentActivityListItem @toggleVisible="toggleVisible" v-on="$listeners"
+        <StudentActivityListItem v-if="!!!activity.hidden" @hideActivity="handledActivityHide" v-on="$listeners"
                                  :activity="activity" :key="activity.id"/>
       </template>
     </template>
@@ -27,6 +27,7 @@
 
 import {groupByKey} from '../utils/utils'
 import StudentActivityListItem from "@/components/StudentsActivityListItem.vue";
+import {mapActions} from "vuex";
 
 export default {
   name: 'StudentsActivityList',
@@ -37,28 +38,30 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['hideActivity', 'clearHiddenActivities']),
     clearHidden() {
       this.hiddenItemsId = []
-      this.updateLocalStorage([])
+      localStorage.setItem("activityStoreHiddenRows", []);
+      this.clearHiddenActivities()
     },
-    toggleVisible(activityId) {
+    handledActivityHide(activityId) {
+      this.hideActivity(activityId)
       if (this.hiddenItemsId.includes(activityId)) {
         this.hiddenItemsId = this.hiddenItemsId.filter(item => item !== activityId)
       } else {
         this.hiddenItemsId.push(activityId)
       }
 
-      this.updateLocalStorage(this.hiddenItemsId)
     },
-    updateLocalStorage(val) {
-      localStorage.setItem("studentActivitiesHiddenRows", JSON.stringify(val));
-    }
+
   },
   mounted() {
-    const arr = localStorage.getItem("studentActivitiesHiddenRows") || []
+    const arr = localStorage.getItem("activityStoreHiddenRows") || []
     const hiddenRows = !!arr.length ? JSON.parse(arr) : []
     this.hiddenItemsId = [...hiddenRows]
   },
+
+
   computed: {
     groupedActivitiesByMonth() {
       const list = this.activities.map(activity => {
@@ -72,7 +75,9 @@ export default {
           ...activity,
           created_month,
         }
-      }).filter(item => !this.hiddenItemsId.includes(item.id));
+      })
+        .filter(item => !this.hiddenItemsId.includes(item.id))
+        .sort((a,b) => (new Date(b.d_created * 1000)) - new Date(a.d_created * 1000))
       return groupByKey(list, "created_month")
     }
   },
