@@ -7,7 +7,7 @@
       :src="topicData.icon_path"
     />
     <div v-if="junior" :style="iconJunior">
-      <span>Jr.</span>
+      <span class="text-xxs p-1 leading-none">Jr.</span>
     </div>
   </div>
 </template>
@@ -42,14 +42,13 @@ export default {
         height: this.size / 2 + 'px',
         lineHeight: this.size / 2 + 'px',
         borderRadius: '100%',
-        fontSize: this.size / 3 + 'px',
         fontWeight: 'bold',
         background: '#fbbf24',
       },
       iconWrapper: {
         backgroundColor: !!this.junior ? '#FFA500' : '#48D1CC',
         position: 'relative',
-        padding: '6px',
+        padding: '3px',
         borderRadius: '100%',
         width: this.size + 'px',
         height: this.size + 'px',

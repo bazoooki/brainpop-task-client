@@ -1,5 +1,5 @@
 <template>
-  <button class="border border-primary-bold font-bold  rounded px-2 leading-none mr-1 text-xxs py-1.5 capitalize" @click="onClick" :class="[selected ? 'bg-primary-lighter bg-opacity-20' : '']">
+  <button class="border border-primary-bold font-medium  rounded p-1.5 leading-none mr-2 text-xs  capitalize" @click="onClick" :class="[selected ? 'bg-primary-lighter bg-opacity-20' : '']">
     <span class="text-primary">{{ value | capitalize }}</span>
   </button>
 

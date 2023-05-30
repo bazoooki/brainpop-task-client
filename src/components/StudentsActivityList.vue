@@ -82,7 +82,9 @@ export default {
 };
 </script>
 <style scoped>
-  .dec-connector:first-of-type {display: none !important;}
+.dec-connector:nth-child(0) {
+  display: none !important;
+}
 </style>
 <!--<style>-->
 <!--.clear-hidden-items {-->

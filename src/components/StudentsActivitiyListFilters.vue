@@ -6,12 +6,12 @@
     </div>
     <div class="text-sm ">Filter by:</div>
     <div class="list-filters-type space-y-1">
-      <StudentsActivityListFiltersButton
-        value="all_work"
-        :selected="!!activityTypeFilters.includes('all')"
-        @toggleSelect="toggleSelectedType"
-        key="all"
-      />
+<!--      <StudentsActivityListFiltersButton-->
+<!--        :value="all_work"-->
+<!--        :selected="!!activityTypeFilters.includes('all_work')"-->
+<!--        @toggleSelect="toggleSelectedType"-->
+<!--        key="all"-->
+<!--      />-->
 
       <StudentsActivityListFiltersButton
         v-for="activityType in activityTypes"
@@ -30,6 +30,7 @@
 import SearchAutocomplete from "@/components/SearchAutoComplete.vue";
 import StudentsActivityListFiltersButton from "@/components/StudentsActivityListFiltersButton.vue";
 import {
+  ALL_WORK,
   CHALLENGE,
   MAKE_A_MAP,
   DRAW_ABOUT_IT,
@@ -54,6 +55,7 @@ export default {
   computed: {
     activityTypes() {
       return [
+        ALL_WORK,
         CHALLENGE,
         MAKE_A_MAP,
         DRAW_ABOUT_IT,

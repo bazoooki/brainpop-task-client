@@ -8,7 +8,10 @@ const QUIZ = 'quiz'
 const RELATED_READING = 'related_reading'
 const WORD_PLAY = 'word_play'
 
+const ALL_WORK = 'all_work'
+
 export {
+  ALL_WORK,
   CHALLENGE,
   MAKE_A_MAP,
   DRAW_ABOUT_IT,

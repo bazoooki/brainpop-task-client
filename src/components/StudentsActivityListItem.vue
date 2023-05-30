@@ -1,13 +1,13 @@
 <template>
   <div class="w-full border border-gray-200 p-5 flex items-center justify-between relative">
     <div class="w-0.5 h-4 bg-gray-300 absolute left-10 -top-4"></div>
-    <div class="activity-info">
+    <div class="flex items-center items-center h-full">
       <ActivityTopicIcon
         :topic-data="activity.topic_data"
-        :size="30"
+        :size="35"
         :junior="activity.product === 'bpjr'"
       />
-      <div class="activity-topic">
+      <div class="flex justify-start mx-4 flex-col">
         <div class="topic-title">
           {{ topicTitle }}
         </div>
@@ -21,14 +21,18 @@
       <div v-if="isScore" class="activity-score">
         Score {{ activity.score }} / {{ activity.possible_score }}
       </div>
-      <button class="icon-btn" v-if="isZoom" @click="openZoom">
+      <button class="icon-btn text-xs hover:bg-primary-bold hover:bg-opacity-10 p-1.5 rounded"
+              v-if="isZoom" @click="openZoom">
         <span>
           <font-awesome-icon icon="fa-solid fa-eye"/>
           View work
         </span>
       </button>
-      <button class="icon-btn hide-btn" @click="toggleVisible">
-          <font-awesome-icon icon="fa-solid fa-eye-slash"/>
+      <button
+        class="text-primary  hide-btn text-xxs flex items-center justify-between px-2 hover:bg-primary-bold hover:bg-opacity-10 rounded"
+        @click="toggleVisible">
+        <span class="px-1">hide</span>
+        <font-awesome-icon icon="fa-solid fa-eye-slash mx-0"/>
       </button>
     </div>
 
@@ -54,16 +58,16 @@ export default {
     }
   },
   computed: {
-    topicDate () {
+    topicDate() {
       return new Date(this.activity.d_created * 1000)
     },
-    topicTitle () {
+    topicTitle() {
       return `${humanize(this.activity.topic_data.name)} ${humanize(this.activity.resource_type)}`
     },
     isScore() {
       return (!!activityTypesSettings[this.activity.resource_type].score && !!this.activity.score.length && !!this.activity.possible_score.length)
     },
-    isZoom () {
+    isZoom() {
       return !!activityTypesSettings[this.activity.resource_type].zoom
     }
   },
@@ -75,24 +79,6 @@ export default {
 
 
 <style scoped>
-
-.activity-list-item {
-  padding: 1.1rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-top: 1rem;
-  display: flex;
-  position: relative;
-  justify-items: center;
-  justify-content: space-between;
-}
-
-.activity-info {
-  flex-wrap: wrap;
-  display: flex;
-  height: 100%;
-  align-items: center;
-}
 
 .activity-topic {
   display: flex;
@@ -129,6 +115,7 @@ export default {
   border: none;
   font-weight: bolder;
 }
+
 .hide-btn {
   position: absolute;
   bottom: 5px;

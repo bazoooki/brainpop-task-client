@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import {ALL_WORK} from "@/utils/activities.consts";
+
 export default {
   name: 'SearchAutocomplete',
   props: {
@@ -85,7 +87,7 @@ export default {
       });
     },
     onChange() {
-      this.$emit('toggleActivityTypeFilter', 'all')
+      this.$emit('toggleActivityTypeFilter', ALL_WORK)
       this.updateSearch(this.search)
       this.filterResults();
       this.isOpen = true;
