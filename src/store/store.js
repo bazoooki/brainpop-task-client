@@ -31,7 +31,6 @@ const store = new Vuex.Store({
   },
   actions: {
     hideActivity({ commit }, activityId) {
-      console.log('actions hideActivity: ', activityId);
       commit(HIDE_ACTIVITY, activityId);
     },
     clearHiddenActivities({ commit }) {
@@ -46,7 +45,7 @@ const store = new Vuex.Store({
           commit(SET_ACTIVITY_DATA, data);
         })
         .catch((e) => {
-          throw new Error(e);
+          console.error(e);
         });
     },
     fetchActivitiesV2({ commit }) {
@@ -58,7 +57,7 @@ const store = new Vuex.Store({
           commit(SET_ACTIVITY_DATA, activityData);
         })
         .catch((e) => {
-          throw new Error(e);
+          console.error(e);
         });
     },
   },
