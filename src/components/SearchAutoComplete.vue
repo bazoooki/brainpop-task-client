@@ -7,7 +7,7 @@
           name="freeSearch"
           id="freeSearch"
           @input="onChange"
-          placeholder="Search Activities"
+          placeholder="Search Activity"
           v-model="search"
           @keydown.down="onArrowDown"
           @keydown.up="onArrowUp"
@@ -141,10 +141,11 @@ export default {
 .autocomplete input {
   width: 300px;
   text-indent: 5px;
+  height: 30px;
   border: 1px solid #999;;
   border-right: 0px;
   border-radius: 3px 0px 0px 3px;
-  text: 16px;
+  text: 12px;
 }
 
 .autocomplete button {
