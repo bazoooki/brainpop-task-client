@@ -10,8 +10,14 @@
       />
       <StudentsActivityList
         :selectedActivityId.sync="selectedActivityId"
-        :activities="filteredActivities"
+        :activities="visibleActivities"
       />
+    </div>
+    <div class="list-actions flex w-full justify-center">
+      <button :class="activitiesVisible >= activities.length ? 'opacity-50': 'opacity-100'" class="text-primary text-xs font-bold  "
+              @click="activitiesVisible += stepSize" :disabled="activitiesVisible >= activities.length"
+      >
+        <font-awesome-icon icon="fa-solid fa-angle-down "/> Load more</button>
     </div>
     <Modal
       v-if="selectedActivityData"
@@ -47,6 +53,8 @@ export default {
   data() {
     return {
       selectedActivityId: null,
+      activitiesVisible: 10,
+      stepSize: 2,
       filters: {
         types: [ALL_WORK],
         search: ''
@@ -89,6 +97,9 @@ export default {
       ))
         .filter(item => (this.filters.types.includes(item.resourceType) || this.filters.types.includes(ALL_WORK)))
     },
+    visibleActivities() {
+      return this.filteredActivities.slice(0, this.activitiesVisible)
+    }
   },
   mounted() {
     if (!!this.apiV2) {
