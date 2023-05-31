@@ -26,13 +26,13 @@ export {
 
 
 const activityTypesSettings = {
-  'challenge': {score: true,  zoom :true},
-  'make_a_map': {score: false, zoom: true},
-  'draw_about_it': {score: false, zoom: true},
-  'easy_quiz': {score: true, zoom: true},
-  'make_a_movie': {score: false, zoom: true},
-  'movie': {score: false, zoom: false},
-  'quiz': {score: true, zoom: true},
-  'related_reading': {score: false, zoom: false},
-  'word_play': {score: false, zoom: true},
+  [CHALLENGE]: {score: true,  zoom :true},
+  [MAKE_A_MAP]: {score: false, zoom: true},
+  [DRAW_ABOUT_IT]: {score: false, zoom: true},
+  [EASY_QUIZ]: {score: true, zoom: true},
+  [MAKE_A_MOVIE]: {score: false, zoom: true},
+  [MOVIE]: {score: false, zoom: false},
+  [QUIZ]: {score: true, zoom: true},
+  [RELATED_READING]: {score: false, zoom: false},
+  [WORD_PLAY]: {score: false, zoom: true},
 }

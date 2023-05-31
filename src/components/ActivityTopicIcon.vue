@@ -4,7 +4,7 @@
       :alt="topicData.name"
       :width="size"
       :height="size"
-      :src="topicData.icon_path"
+      :src="topicData.iconPath"
     />
     <div v-if="junior" :style="iconJunior">
       <span class="text-xxs p-1 leading-none">Jr.</span>
@@ -16,6 +16,12 @@
 export default {
   name: 'ActivityTopicIcon',
   props: {
+    iconPath: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
     junior: {
       type: Boolean,
       required: false,

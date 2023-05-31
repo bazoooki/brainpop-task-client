@@ -83,11 +83,11 @@ export default {
     },
     filteredActivities() {
       return this.activities.filter(item => (
-        humanize(item.resource_type).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
-        humanize( `${humanize(item.topic_data.name)} ${humanize(item.resource_type)}`).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
-        humanize(item.topic_data.name).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1
+        humanize(item.resourceType).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
+        humanize( `${humanize(item.topicData.name)} ${humanize(item.resourceType)}`).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1 ||
+        humanize(item.topicData.name).toLowerCase().indexOf(this.filters.search.toLowerCase()) > -1
       ))
-        .filter(item => (this.filters.types.includes(item.resource_type) || this.filters.types.includes(ALL_WORK)))
+        .filter(item => (this.filters.types.includes(item.resourceType) || this.filters.types.includes(ALL_WORK)))
     },
   },
   mounted() {

@@ -61,7 +61,7 @@ export default {
       ]
     },
     suggestions() {
-      return this.activities.map(item => `${humanize(item.topic_data.name)} ${humanize(item.resource_type)}`)
+      return this.activities.map(item => `${humanize(item.topicData.name)} ${humanize(item.resourceType)}`)
     }
   },
   props: {

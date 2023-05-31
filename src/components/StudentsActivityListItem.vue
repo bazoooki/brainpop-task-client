@@ -3,7 +3,7 @@
     <div class="w-0.5 h-4 bg-gray-300 absolute left-10 -top-4"></div>
     <div class="flex items-center items-center h-full">
       <ActivityTopicIcon
-        :topic-data="activity.topic_data"
+        :topic-data="activity.topicData"
         :size="35"
         :junior="activity.product === 'bpjr'"
       />
@@ -20,7 +20,7 @@
     <div class="activity-settings">
 
       <div v-if="isScore" class="activity-score">
-        Score {{ activity.score }} / {{ activity.possible_score }}
+        Score {{ activity.score }} / {{ activity.possibleScore }}
       </div>
       <button class="icon-btn text-xs hover:bg-primary-bold hover:bg-opacity-10 p-1.5 rounded"
               v-if="isZoom" @click="openZoom">
@@ -60,16 +60,16 @@ export default {
   },
   computed: {
     topicDate() {
-      return new Date(this.activity.d_created * 1000)
+      return new Date(this.activity.dCreated * 1000)
     },
     topicTitle() {
-      return `${humanize(this.activity.topic_data.name)} ${humanize(this.activity.resource_type)}`
+      return `${humanize(this.activity.topicData.name)} ${humanize(this.activity.resourceType)}`
     },
     isScore() {
-      return (!!activityTypesSettings[this.activity.resource_type].score && !!this.activity.score.length && !!this.activity.possible_score.length)
+      return (!!activityTypesSettings[this.activity.resourceType].score && !!this.activity.score.length && !!this.activity.possibleScore.length)
     },
     isZoom() {
-      return !!activityTypesSettings[this.activity.resource_type].zoom
+      return !!activityTypesSettings[this.activity.resourceType].zoom
     }
   },
   props: {

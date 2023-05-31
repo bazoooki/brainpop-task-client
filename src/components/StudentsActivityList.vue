@@ -68,7 +68,7 @@ export default {
   computed: {
     groupedActivitiesByMonth() {
       const list = this.activities.map(activity => {
-        const date = new Date(activity.d_created * 1000)
+        const date = new Date(activity.dCreated * 1000)
         const created_month = new Intl
           .DateTimeFormat('en-US', {
             month: 'long'
@@ -80,7 +80,7 @@ export default {
         }
       })
         .filter(item => !this.hiddenItemsId.includes(item.id))
-        .sort((a, b) => (new Date(b.d_created * 1000)) - new Date(a.d_created * 1000))
+        .sort((a, b) => (new Date(b.dCreated * 1000)) - new Date(a.dCreated * 1000))
       return groupByKey(list, "created_month")
     }
   },

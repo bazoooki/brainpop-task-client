@@ -2,12 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
 import {SET_ACTIVITY_DATA, HIDE_ACTIVITY, DISPLAY_ALL_ACTIVITIES} from "@/store/mutation-types";
-import {prepareV2Data} from "@/utils/utils";
+import {prepareData, prepareV2Data} from "@/utils/utils";
 
 Vue.use(Vuex)
-
-
-
 
 const store = new Vuex.Store({
   state: {
@@ -47,7 +44,8 @@ const store = new Vuex.Store({
       axios
         .get(apiURL)
         .then(res => {
-          commit(SET_ACTIVITY_DATA, res.data );
+          const data = prepareData(res.data)
+          commit(SET_ACTIVITY_DATA, data );
         })
         .catch(e => {
           console.log(e);
@@ -73,7 +71,6 @@ store.subscribe((mutation, state) => {
   const hiddenActivityIds = state.activities.filter(item=>item.hidden).map(item=>item.id)
   localStorage.setItem("activityStoreHiddenRows", JSON.stringify(hiddenActivityIds));
 });
-
 
 
 export default store
