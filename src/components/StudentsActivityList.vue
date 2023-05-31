@@ -80,7 +80,7 @@ export default {
       })
         .filter((item) => !this.hiddenItemsId.includes(item.id))
         .sort((a, b) => (new Date(b.dCreated * 1000)) - new Date(a.dCreated * 1000));
-      return groupByKey(list, 'created_month');
+      return groupByKey(list, 'createdMonth');
     },
   },
   props: {
