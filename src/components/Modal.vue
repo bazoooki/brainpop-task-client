@@ -1,7 +1,9 @@
 <template>
-  <div class="modal">
-    <div class="modal-container bg-white p-10 bg-white left-1/2 top-1/2 -translate-x-1.5 -translate-y-1/2 fixed">
-      <button class="close-btn text-xl w-10 h-10 absolute right-4 top-4 border-gray-500 border-4 text-xl text-gray-700 font-bold rounded-full" @click="$emit('close')">
+  <div class="modal fixed">
+    <div class="modal-container">
+      <button
+        class="close-btn text-xl w-10 h-10 absolute right-4 top-4 border-gray-500 border-4 text-xl text-gray-700 font-bold rounded-full"
+        @click="$emit('close')">
         <font-awesome-icon icon="fa-solid fa-xmark "/>
       </button>
       <slot></slot>
