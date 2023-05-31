@@ -6,14 +6,10 @@
 
 <script>
 
-
-
-import StudentActivities from "@/components/StudentActivities.vue";
+import StudentActivities from '@/components/StudentActivities.vue';
 
 export default {
-  name: 'Activities',
-  components: {StudentActivities},
-}
+  name: 'ActivitiesView',
+  components: { StudentActivities },
+};
 </script>
-
-

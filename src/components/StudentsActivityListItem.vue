@@ -30,7 +30,8 @@
         </span>
       </button>
       <button
-        class="text-primary  hide-btn text-xxs flex items-center justify-between px-2 hover:bg-primary-bold hover:bg-opacity-10 rounded opacity-0 group-hover:opacity-100"
+        class="text-primary  hide-btn text-xxs flex items-center justify-between px-2
+        hover:bg-primary-bold hover:bg-opacity-10 rounded opacity-0 group-hover:opacity-100"
         @click="hideActivity">
         <span class="px-1">hide</span>
         <font-awesome-icon icon="fa-solid fa-eye-slash mx-0"/>
@@ -42,42 +43,42 @@
 
 <script>
 
-import ActivityTopicIcon from "@/components/ActivityTopicIcon.vue";
-import DateTime from "@/components/DateTime.vue";
-import {activityTypesSettings} from "@/utils/activities.consts";
-import {humanize} from "@/utils/utils";
+import ActivityTopicIcon from '@/components/ActivityTopicIcon.vue';
+import DateTime from '@/components/DateTime.vue';
+import { activityTypesSettings } from '@/utils/activities.consts';
+import { humanize } from '@/utils/utils';
 
 export default {
   name: 'StudentsActivityListItem',
-  components: {DateTime, ActivityTopicIcon},
+  components: { DateTime, ActivityTopicIcon },
   methods: {
     hideActivity() {
-      this.$emit('hideActivity', this.activity.id)
+      this.$emit('hideActivity', this.activity.id);
     },
     openZoom() {
-      this.$emit('update:selectedActivityId', this.activity.id)
-    }
+      this.$emit('update:selectedActivityId', this.activity.id);
+    },
   },
   computed: {
     topicDate() {
-      return new Date(this.activity.dCreated * 1000)
+      return new Date(this.activity.dCreated * 1000);
     },
     topicTitle() {
-      return `${humanize(this.activity.topicData.name)} ${humanize(this.activity.resourceType)}`
+      return `${humanize(this.activity.topicData.name)} ${humanize(this.activity.resourceType)}`;
     },
     isScore() {
-      return (!!activityTypesSettings[this.activity.resourceType].score && !!this.activity.score.length && !!this.activity.possibleScore.length)
+      return (!!activityTypesSettings[this.activity.resourceType].score
+        && !!this.activity.score.length && !!this.activity.possibleScore.length);
     },
     isZoom() {
-      return !!activityTypesSettings[this.activity.resourceType].zoom
-    }
+      return !!activityTypesSettings[this.activity.resourceType].zoom;
+    },
   },
   props: {
     activity: Object,
   },
 };
 </script>
-
 
 <style scoped>
 

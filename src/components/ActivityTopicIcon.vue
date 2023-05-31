@@ -35,7 +35,7 @@ export default {
     topicData: {
       type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -44,22 +44,22 @@ export default {
         bottom: 0,
         transform: 'translate(25%, 25%)',
         right: 0,
-        width: this.size / 2 + 'px',
-        height: this.size / 2 + 'px',
-        lineHeight: this.size / 2 + 'px',
+        width: `${this.size / 2}px`,
+        height: `${this.size / 2}px`,
+        lineHeight: `${this.size / 2}px`,
         borderRadius: '100%',
         fontWeight: 'bold',
         background: '#fbbf24',
       },
       iconWrapper: {
-        backgroundColor: !!this.junior ? '#FFA500' : '#48D1CC',
+        backgroundColor: this.junior ? '#FFA500' : '#48D1CC',
         position: 'relative',
         padding: '3px',
         borderRadius: '100%',
-        width: this.size + 'px',
-        height: this.size + 'px',
-      }
-    }
+        width: `${this.size}px`,
+        height: `${this.size}px`,
+      },
+    };
   },
 };
 </script>

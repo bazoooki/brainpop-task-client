@@ -20,8 +20,8 @@
 
 <script>
 
-import SearchAutocomplete from "@/components/SearchAutoComplete.vue";
-import StudentsActivityListFiltersButton from "@/components/StudentsActivityListFiltersButton.vue";
+import SearchAutocomplete from '@/components/SearchAutoComplete.vue';
+import StudentsActivityListFiltersButton from '@/components/StudentsActivityListFiltersButton.vue';
 import {
   ALL_WORK,
   CHALLENGE,
@@ -32,18 +32,18 @@ import {
   MOVIE,
   QUIZ,
   RELATED_READING,
-  WORD_PLAY
-} from "@/utils/activities.consts";
-import {humanize} from "@/utils/utils";
+  WORD_PLAY,
+} from '@/utils/activities.consts';
+import { humanize } from '@/utils/utils';
 
 export default {
   name: 'StudentsActivityListFilters',
-  components: {StudentsActivityListFiltersButton, SearchAutocomplete},
+  components: { StudentsActivityListFiltersButton, SearchAutocomplete },
 
   methods: {
     toggleSelectedType(value) {
-      this.$emit('toggleActivityTypeFilter', value)
-    }
+      this.$emit('toggleActivityTypeFilter', value);
+    },
   },
   computed: {
     activityTypes() {
@@ -57,21 +57,21 @@ export default {
         MOVIE,
         QUIZ,
         RELATED_READING,
-        WORD_PLAY
-      ]
+        WORD_PLAY,
+      ];
     },
     suggestions() {
-      return this.activities.map(item => `${humanize(item.topicData.name)} ${humanize(item.resourceType)}`)
-    }
+      return this.activities.map((item) => `${humanize(item.topicData.name)} ${humanize(item.resourceType)}`);
+    },
   },
   props: {
     activityTypeFilters: {
-      type: Array
+      type: Array,
     },
     activities: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>

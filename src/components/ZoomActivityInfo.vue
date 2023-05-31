@@ -22,24 +22,24 @@
 
 <script>
 
-
-import ActivityTopicIcon from "@/components/ActivityTopicIcon.vue";
-import DateTime from "@/components/DateTime.vue";
-import {humanize} from "@/utils/utils";
-import {activityTypesSettings} from "@/utils/activities.consts";
+import ActivityTopicIcon from '@/components/ActivityTopicIcon.vue';
+import DateTime from '@/components/DateTime.vue';
+import { humanize } from '@/utils/utils';
+import { activityTypesSettings } from '@/utils/activities.consts';
 
 export default {
   name: 'ZoomActivityInfo',
-  components: {DateTime, ActivityTopicIcon},
+  components: { DateTime, ActivityTopicIcon },
   computed: {
     topicDate() {
-      return new Date(this.activity.dCreated * 1000)
+      return new Date(this.activity.dCreated * 1000);
     },
     topicTitle() {
-      return `${humanize(this.activity.topicData.name)} ${humanize(this.activity.resourceType)}`
+      return `${humanize(this.activity.topicData.name)} ${humanize(this.activity.resourceType)}`;
     },
     isScore() {
-      return (!!activityTypesSettings[this.activity.resourceType].score && !!this.activity.score.length && !!this.activity.possibleScore.length)
+      return (!!activityTypesSettings[this.activity.resourceType].score
+        && !!this.activity.score.length && !!this.activity.possibleScore.length);
     },
   },
   props: {
@@ -47,8 +47,6 @@ export default {
       type: Object,
       required: true,
     },
-  }
-}
+  },
+};
 </script>
-
-

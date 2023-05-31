@@ -6,25 +6,23 @@
 
 <script>
 
-
-import ZoomActivityInfo from "@/components/ZoomActivityInfo.vue";
-import {mapActions, mapGetters} from "vuex";
+import ZoomActivityInfo from '@/components/ZoomActivityInfo.vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'Zoom',
-  components: {ZoomActivityInfo},
+  name: 'ZoomView',
+  components: { ZoomActivityInfo },
   computed: {
     ...mapGetters(['getActivityById']),
     activityData() {
-      return this.getActivityById(this.$route.params.id)
+      return this.getActivityById(this.$route.params.id);
     },
   },
   methods: {
     ...mapActions(['fetchActivities']),
   },
   mounted() {
-    this.fetchActivities()
-  }
-}
+    this.fetchActivities();
+  },
+};
 </script>
-

@@ -2,7 +2,8 @@
   <div class="modal fixed">
     <div class="modal-container">
       <button
-        class="close-btn text-xl w-10 h-10 absolute right-4 top-4 border-gray-500 border-4 text-xl text-gray-700 font-bold rounded-full"
+        class="close-btn text-xl w-10 h-10 absolute right-4 top-4
+        border-gray-500 border-4 text-xl text-gray-700 font-bold rounded-full"
         @click="$emit('close')">
         <font-awesome-icon icon="fa-solid fa-xmark "/>
       </button>
@@ -13,8 +14,8 @@
 
 <script>
 export default {
-  name: 'Modal',
-}
+  name: 'BaseModal',
+};
 </script>
 
 <style scoped>

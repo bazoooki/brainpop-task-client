@@ -9,7 +9,8 @@
     </div>
     <template v-for="(group, month) in groupedActivitiesByMonth">
       <div :key="month"
-           class="bg-yellow-200 inline-block py-1 rounded-xl bg-opacity-25 text-xs font-light text-gray-600 px-3 relative w-20 text-center">
+           class="bg-yellow-200 inline-block py-1 rounded-xl bg-opacity-25
+            text-xs font-light text-gray-600 px-3 relative w-20 text-center">
         <span>{{ month }} </span>
         <div class="dec-connector w-0.5 h-4 bg-gray-300 absolute left-10 first:hidden -top-4"></div>
       </div>
@@ -28,61 +29,59 @@
 
 <script>
 
-import {groupByKey} from '../utils/utils'
-import StudentActivityListItem from "@/components/StudentsActivityListItem.vue";
-import {mapActions} from "vuex";
+import StudentActivityListItem from '@/components/StudentsActivityListItem.vue';
+import { mapActions } from 'vuex';
+import { groupByKey } from '../utils/utils';
 
 export default {
   name: 'StudentsActivityList',
-  components: {StudentActivityListItem},
+  components: { StudentActivityListItem },
   data() {
     return {
-      hiddenItemsId: []
-    }
+      hiddenItemsId: [],
+    };
   },
   methods: {
     ...mapActions(['hideActivity', 'clearHiddenActivities']),
     clearHidden() {
-      this.hiddenItemsId = []
-      localStorage.setItem("activityStoreHiddenRows", []);
-      this.clearHiddenActivities()
+      this.hiddenItemsId = [];
+      localStorage.setItem('activityStoreHiddenRows', []);
+      this.clearHiddenActivities();
     },
     handledActivityHide(activityId) {
-      this.hideActivity(activityId)
+      this.hideActivity(activityId);
       if (this.hiddenItemsId.includes(activityId)) {
-        this.hiddenItemsId = this.hiddenItemsId.filter(item => item !== activityId)
+        this.hiddenItemsId = this.hiddenItemsId.filter((item) => item !== activityId);
       } else {
-        this.hiddenItemsId.push(activityId)
+        this.hiddenItemsId.push(activityId);
       }
-
     },
 
   },
   mounted() {
-    const arr = localStorage.getItem("activityStoreHiddenRows") || []
-    const hiddenRows = !!arr.length ? JSON.parse(arr) : []
-    this.hiddenItemsId = [...hiddenRows]
+    const arr = localStorage.getItem('activityStoreHiddenRows') || [];
+    const hiddenRows = arr.length ? JSON.parse(arr) : [];
+    this.hiddenItemsId = [...hiddenRows];
   },
-
 
   computed: {
     groupedActivitiesByMonth() {
-      const list = this.activities.map(activity => {
-        const date = new Date(activity.dCreated * 1000)
-        const created_month = new Intl
+      const list = this.activities.map((activity) => {
+        const date = new Date(activity.dCreated * 1000);
+        const createdMonth = new Intl
           .DateTimeFormat('en-US', {
-            month: 'long'
+            month: 'long',
           })
-          .format(date)
+          .format(date);
         return {
           ...activity,
-          created_month,
-        }
+          createdMonth,
+        };
       })
-        .filter(item => !this.hiddenItemsId.includes(item.id))
-        .sort((a, b) => (new Date(b.dCreated * 1000)) - new Date(a.dCreated * 1000))
-      return groupByKey(list, "created_month")
-    }
+        .filter((item) => !this.hiddenItemsId.includes(item.id))
+        .sort((a, b) => (new Date(b.dCreated * 1000)) - new Date(a.dCreated * 1000));
+      return groupByKey(list, 'created_month');
+    },
   },
   props: {
     activities: Array,

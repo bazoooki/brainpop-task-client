@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Activities from "@/views/Activities.vue";
-import Zoom from "@/views/Zoom.vue";
-import Activities2 from "@/views/Activities2.vue";
+import Activities from '@/views/Activities.vue';
+import Zoom from '@/views/Zoom.vue';
+import Activities2 from '@/views/Activities2.vue';
 
 Vue.use(VueRouter);
 
@@ -24,8 +24,8 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/activities'
-  }
+    redirect: '/activities',
+  },
 ];
 
 const router = new VueRouter({

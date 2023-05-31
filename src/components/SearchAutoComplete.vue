@@ -1,15 +1,19 @@
 <template>
   <div class="autocomplete">
     <div class="search-input">
-      <input
-        type="text"
-        @input="onChange"
-        placeholder="Search Activities"
-        v-model="search"
-        @keydown.down="onArrowDown"
-        @keydown.up="onArrowUp"
-        @keydown.enter="onEnter"
-      />
+      <label for="freeSearch">
+        <input
+          type="text"
+          name="freeSearch"
+          id="freeSearch"
+          @input="onChange"
+          placeholder="Search Activities"
+          v-model="search"
+          @keydown.down="onArrowDown"
+          @keydown.up="onArrowUp"
+          @keydown.enter="onEnter"
+        />
+      </label>
       <button>
         <font-awesome-icon icon="fa-solid fa-search"/>
       </button>
@@ -26,6 +30,7 @@
         Loading results...
       </li>
       <li
+        aria-hidden="true"
         v-else
         v-for="(result, i) in results"
         :key="i"
@@ -40,7 +45,7 @@
 </template>
 
 <script>
-import {ALL_WORK} from "@/utils/activities.consts";
+import { ALL_WORK } from '@/utils/activities.consts';
 
 export default {
   name: 'SearchAutocomplete',
@@ -61,7 +66,7 @@ export default {
     };
   },
   watch: {
-    suggestions: function (value, oldValue) {
+    suggestions(value, oldValue) {
       if (value.length !== oldValue.length) {
         this.results = value;
         this.isLoading = false;
@@ -69,26 +74,26 @@ export default {
     },
   },
   mounted() {
-    document.addEventListener('click', this.handleClickOutside)
+    document.addEventListener('click', this.handleClickOutside);
   },
   beforeDestroy() {
-    document.removeEventListener('click', this.handleClickOutside)
+    document.removeEventListener('click', this.handleClickOutside);
   },
   methods: {
     setResult(result) {
-      this.updateSearch(result)
+      this.updateSearch(result);
       this.search = result;
       this.isOpen = false;
     },
     filterResults() {
       this.results = this.suggestions.filter((item) => {
         const a = item.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
-        return a
+        return a;
       });
     },
     onChange() {
-      this.$emit('toggleActivityTypeFilter', ALL_WORK)
-      this.updateSearch(this.search)
+      this.$emit('toggleActivityTypeFilter', ALL_WORK);
+      this.updateSearch(this.search);
       this.filterResults();
       this.isOpen = true;
     },
@@ -100,12 +105,12 @@ export default {
     },
     onArrowDown() {
       if (this.arrowCounter < this.results.length) {
-        this.arrowCounter = this.arrowCounter + 1;
+        this.arrowCounter += 1;
       }
     },
     onArrowUp() {
       if (this.arrowCounter > 0) {
-        this.arrowCounter = this.arrowCounter - 1;
+        this.arrowCounter -= 1;
       }
     },
     updateSearch(str) {
